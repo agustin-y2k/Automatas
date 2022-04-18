@@ -57,15 +57,24 @@ def estado_7():
     print("estado 7")
     print("Estado de Aceptacion")
     print("**********Fin del Programa**********")
+    quit()
 
+def validador(lista_alfabeto, lista_string, cont):
+    con = 0
+    for i in lista_string:
+        if lista_alfabeto.__contains__(lista_string[con]) == False:
+            print(f"'{lista_string[con]}' argumentos ingresados no pertenecen al alfabeto")
+            main()
+        con += 1
+    estado_0(lista_string, cont)
+    
 
 def main():
-    #lista_alfabeto = list(input("ingrese el alfabeto: "))
+    lista_alfabeto = ['a','b']
     lista_string = list(input("ingrese el string:"))
     cont = 0
-    estado_0(lista_string, cont)
+    validador(lista_alfabeto,lista_string, cont)
 
-#estado = True
-
-main()
+if __name__ == "__main__":
+    main()
     
