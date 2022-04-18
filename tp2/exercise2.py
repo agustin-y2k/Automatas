@@ -1,4 +1,4 @@
-
+"""
 def estado_0(lista, cont):
     print("estado 0")
     if len(lista) == 0:
@@ -131,18 +131,6 @@ def estado_16():
     print("Estado de Aceptacion")
     print("**********Fin del Programa**********")
 
-def conversion(lista):
-    nueva_lista = []
-    for i in lista:
-        print(i)
-        if lista[0] == lista[1]:
-            nueva_lista.append(f'{lista[0]}{lista[1]}')
-            lista.pop(0)
-            lista.pop(0)
-        elif lista[0] != lista[1]:
-            nueva_lista.append({lista[0]})
-            lista.pop(0)
-    return nueva_lista
 
 def validador(lista_alfabeto, lista_convertida, cont):
     con = 0
@@ -153,14 +141,28 @@ def validador(lista_alfabeto, lista_convertida, cont):
         con += 1
     print(lista_convertida)
     estado_0(lista_convertida, cont)
-    
+    """
 def main():
     lista_alfabeto = ['a','b','bb','aa']
     lista_string = list(input("ingrese el string:"))
     print(lista_string)
-    lista_convertida = conversion(lista_string)
+    
+    nueva_lista = []
+    if len(lista_string)%2!=0:
+        lista_string.append('')
+    for i in range(0,len(lista_string),2):
+        try:
+            if lista_string[0] == lista_string[1]:
+                nueva_lista.append(f'{lista_string[i]}{lista_string[i+1]}')
+            else:
+                nueva_lista.append(f'{lista_string[i]}')
+                nueva_lista.append(f'{lista_string[i+1]}')
+        except:
+            print()
+    print(nueva_lista)
+    
     cont = 0
-    validador(lista_alfabeto, lista_convertida, cont)
+    #validador(lista_alfabeto, nueva_lista, cont)
 
 
 if __name__ == "__main__":
