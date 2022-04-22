@@ -142,23 +142,30 @@ def validador(lista_alfabeto, lista_convertida, cont):
     print(lista_convertida)
     estado_0(lista_convertida, cont)
     """
+from pandas import notnull
+
+
 def main():
-    lista_alfabeto = ['a','b','bb','aa']
+    #lista_alfabeto = ['a','b','bb','aa']
     lista_string = list(input("ingrese el string:"))
-    print(lista_string)
+    
     
     nueva_lista = []
-    if len(lista_string)%2!=0:
-        lista_string.append('')
-    for i in range(0,len(lista_string),2):
-        try:
-            if lista_string[0] == lista_string[1]:
-                nueva_lista.append(f'{lista_string[i]}{lista_string[i+1]}')
+    aux1 = ''
+    aux2 = ''
+    lista_string.append('')
+    for i in range(len(lista_string)):
+        if aux2 == '':
+            aux2 = lista_string[i]
+        else:
+            if aux2 == lista_string[i]:
+                nueva_lista.append(f'{aux2}{lista_string[i]}')
+                aux2 = ''
             else:
-                nueva_lista.append(f'{lista_string[i]}')
-                nueva_lista.append(f'{lista_string[i+1]}')
-        except:
-            print()
+                if aux2 != lista_string[i]:
+                    nueva_lista.append(f'{aux2}')
+                    aux2 = lista_string[i]
+    print(lista_string)
     print(nueva_lista)
     
     cont = 0
