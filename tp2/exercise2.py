@@ -1,136 +1,74 @@
-"""
-def estado_0(lista, cont):
-    print("estado 0")
+
+def estado_0(lista):
+    print(f"estado 0")
     if len(lista) == 0:
-        estado_8()
-    estado_1(lista, cont)
-
-def estado_1(lista, cont):
-    if cont == 0:
-        print("estado 1")
-        cont += 1
-        estado_2(lista, cont)
-    elif cont == 1:
-        print("estado 1")
-        cont += 1
-        estado_5(lista, cont)
-    elif cont >= 2:
-        cont = 0
-        estado_1(lista, cont)
-
-def estado_2(lista, cont):
-    print("estado 2")
+        print(f"estado 8")
+        estado_8(lista)
+    else:
+        if lista[0] == 'aa' or lista[0] == 'b':
+            estado_1(lista)
+        elif lista[0] == 'bb' or lista[0] == 'a':
+            print(f"estado 8")
+            estado_8(lista)
+        
+def estado_1(lista):
     if lista[0] == 'aa':
-        lista[0] = 'a'
-        estado_3(lista, cont)
-    else:
-        print("***********Reinicio**********")
-        estado_0(lista, cont)
-
-def estado_3(lista, cont):
-    print("estado 3")
-    if lista[0] == 'a':
+        print(f"estado 1")
+        print(f"estado 2 -> {lista[0]}")
+        print(f"estado 3 -> {lista[0]}")
+        print(f"estado 4")
         lista.pop(0)
-        estado_4(lista, cont)
-    else:
-        print("***********Reinicio**********")
-        estado_0(lista, cont)
-
-def estado_4(lista, cont):
-    print("estado 4")
-    estado_7(lista, cont)
-
-def estado_5(lista, cont):
-    print("estado 5")
-    if lista[0] == 'b':
+    elif lista[0] == 'b':
+        print(f"estado 1")
+        print(f"estado 5 -> {lista[0]}")
+        print(f"estado 6")
         lista.pop(0)
-        estado_6(lista, cont)
-    else:
-        print("***********Reinicio**********")
-        estado_0(lista, cont)
-    
+    estado_7(lista)
 
-def estado_6(lista, cont):
-    print("estado 6")
-    estado_7(lista, cont)
-
-def estado_7(lista, cont):
+def estado_7(lista):
     print("estado 7")
     if len(lista) == 0:
+        print(f"estado 8")
         estado_8(lista)
-    elif len(lista) > 0:
-        print("***********Reinicio**********")
-        estado_1(lista, cont)
+    else:
+        if lista[0] == 'aa' or lista[0] == 'b':
+            estado_1(lista)
+        elif lista[0] == 'bb' or lista[0] == 'a':
+            print("estado 8")
+            estado_8(lista)
 
 def estado_8(lista):
-    print("estado 8")
-    cont2 = 0
     if len(lista) == 0:
         estado_16()
-    elif len(lista) > 0:
-        estado_9(lista, cont2)
-
-def estado_9(lista, cont):
-    if cont == 0:
-        print("estado 9")
-        cont += 1
-        estado_13(lista, cont)
-    elif cont == 1:
-        print("estado 9")
-        cont += 1
-        estado_10(lista, cont)
-    elif cont >= 2:
-        cont = 0
-        estado_8(lista, cont)
-
-def estado_10(lista, cont):
-    print("estado 10")
-    if lista[0] == 'bb':
-        lista[0] = 'b'
-        estado_11(lista, cont)
     else:
-        print("***********Reinicio**********")
-        estado_8(lista, cont)
+        if lista[0] == 'bb':
+            print(f"estado 9")
+            print(f"estado 10 -> {lista[0]}")
+            print(f"estado 11 -> {lista[0]}")
+            print(f"estado 12")
+            lista.pop(0)
+        elif lista[0] == 'a':
+            print(f"estado 9")
+            print(f"estado 13 -> {lista[0]}")
+            print(f"estado 14")
+            lista.pop(0)    
+        estado_15(lista)
 
-def estado_11(lista, cont):
-    print("estado 11")
-    if lista[0] == 'b':
-        lista.pop(0)
-        estado_12(lista, cont)
-    else:
-        print("***********Reinicio**********")
-        estado_8(lista, cont)
-
-def estado_12(lista, cont):
-    print("estado 6")
-    estado_15(lista, cont)
-
-def estado_13(lista, cont):
-    print("estado 13")
-    if lista[0] == 'a':
-        lista.pop(0)
-        estado_14(lista, cont)
-    else:
-        print("***********Reinicio**********")
-        estado_8(lista, cont)
-
-def estado_14(lista, cont):
-    print("estado 14")
-    estado_15(lista, cont)
-
-def estado_15(lista, cont):
+def estado_15(lista):
     print("estado 15")
     if len(lista) == 0:
         estado_16()
-    elif len(lista) > 0:
-        print("***********Reinicio**********")
-        estado_9(lista, cont)
-
+    else:
+        if lista[0] == 'aa' or lista[0] == 'b':
+            print(f'**********Reinicio**********')
+            estado_0(lista)
+        elif lista[0] == 'bb' or lista[0] == 'a':
+            estado_8(lista)
+        
 def estado_16():
     print("estado 16")
     print("Estado de Aceptacion")
     print("**********Fin del Programa**********")
-"""
 
 def convertidor(lista_string):
     nueva_lista = []
@@ -147,33 +85,27 @@ def convertidor(lista_string):
                 if aux2 != lista_string[i]:
                     nueva_lista.append(f'{aux2}')
                     aux2 = lista_string[i]
-    return nueva_lista
+    return nueva_lista  
 
-
-def validador(lista_alfabeto, lista_string):
-    for i in range(len(lista_string)):        
-        if lista_alfabeto.__contains__(lista_string[i]) == False:
-            print("argumentos ingresados no pertenecen al alfabeto")
-            main()
-    return lista_string
-    
+import re
 
 def main():
-    lista_alfabeto = ['a','b']
-    while True:
+    con = 0
+    estado = False
+    while estado == False:
         string = input("ingrese el string:")
-        if len(string)!=0:
-            break
-    lista_string = list(string)
-    lista = validador(lista_alfabeto, lista_string)
-    nueva_lista =convertidor(lista)
-    print(nueva_lista)
-    #estado_0(nueva_lista)
-    
-    
-    cont = 0
-    
-
-
+        if string=='':
+            print("Debe ingresar un string")
+        else:
+            if re.fullmatch('[a-b]*', string):
+                estado = True
+                lista_string = list(string)
+            else:
+                print(f"ingrese un string valido")
+                
+    lista = convertidor(lista_string)
+    print(f'lista: {lista}')
+    estado_0(lista)
+        
 if __name__ == "__main__":
     main()
