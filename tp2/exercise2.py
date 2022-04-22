@@ -130,28 +130,10 @@ def estado_16():
     print("estado 16")
     print("Estado de Aceptacion")
     print("**********Fin del Programa**********")
+"""
 
-
-def validador(lista_alfabeto, lista_convertida, cont):
-    con = 0
-    for i in lista_convertida:
-        if lista_alfabeto.__contains__(lista_convertida[con]) == False:
-            print(f"'{lista_convertida[con]}' argumentos ingresados no pertenecen al alfabeto")
-            main()
-        con += 1
-    print(lista_convertida)
-    estado_0(lista_convertida, cont)
-    """
-from pandas import notnull
-
-
-def main():
-    #lista_alfabeto = ['a','b','bb','aa']
-    lista_string = list(input("ingrese el string:"))
-    
-    
+def convertidor(lista_string):
     nueva_lista = []
-    aux1 = ''
     aux2 = ''
     lista_string.append('')
     for i in range(len(lista_string)):
@@ -165,11 +147,32 @@ def main():
                 if aux2 != lista_string[i]:
                     nueva_lista.append(f'{aux2}')
                     aux2 = lista_string[i]
-    print(lista_string)
+    return nueva_lista
+
+
+def validador(lista_alfabeto, lista_string):
+    for i in range(len(lista_string)):        
+        if lista_alfabeto.__contains__(lista_string[i]) == False:
+            print("argumentos ingresados no pertenecen al alfabeto")
+            main()
+    return lista_string
+    
+
+def main():
+    lista_alfabeto = ['a','b']
+    while True:
+        string = input("ingrese el string:")
+        if len(string)!=0:
+            break
+    lista_string = list(string)
+    lista = validador(lista_alfabeto, lista_string)
+    nueva_lista =convertidor(lista)
     print(nueva_lista)
+    #estado_0(nueva_lista)
+    
     
     cont = 0
-    #validador(lista_alfabeto, nueva_lista, cont)
+    
 
 
 if __name__ == "__main__":
