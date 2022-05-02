@@ -3,7 +3,7 @@ import re
 from pyparsing import Regex, line
 
 Regex = "((http|https|HTTP|HTTPS)?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,3})(\/)?"
-f = open("./texto.txt", "r")
+f = open("./url.txt", "r")
 
 with open("./texto.txt") as archivo:
     for linea in archivo:
