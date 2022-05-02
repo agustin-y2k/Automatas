@@ -1,0 +1,11 @@
+http://www.docs.python.org
+docs.com/
+docs
+http://www.docs
+https://www.docs.python.org
+htmm://www.docs.python.org
+htt://www.docs.python.org
+google.com
+https:/www.docs.python.org
+https://www.docs.python.321
+www.docs.python.org
